@@ -12,14 +12,14 @@
           :span="6"
           class="board-list-col-padding"
         >
-          <el-card
-            class="listCard"
-            shadow="always"
-          >
-            <router-link :to="`/board/${value}`">
+          <router-link :to="`/board/${value}`">
+            <el-card
+              class="create-board-btn"
+              shadow="always"
+            >
               {{ value }}
-            </router-link>
-          </el-card>
+            </el-card>
+          </router-link>
         </el-col>
         <el-col 
           :span="5"
@@ -35,8 +35,9 @@
         </el-col>
       </el-row>
       <!-- Board를 추가하기 위한 Dialog -->
-      <el-dialog 
+      <el-dialog
         :visible.sync="dialogFormVisible"
+        class="dialog-wrap"
       >
         <el-input 
           v-model="boardTitle" 
@@ -68,9 +69,9 @@ export default Vue.extend({
   name: 'MainBoard',
   data(){
     return {
-      listshow : true,
+      listshow: true,
       dialogFormVisible: false,
-      listitems : [],
+      listitems: [],
       boardTitle: ''
     }
   },
@@ -117,14 +118,18 @@ export default Vue.extend({
 .board-title > span {
   display: table-cell;
   font-size: 15pt;
-  padding-right: 
+  padding-right: 5px;
+}
+.el-dialog{
+  width: 300px;
 }
 .board-list-col-padding {
   padding: 6px;
 }
 .create-board-btn {
+  font-weight: bold;
   width: 206px;
-  height: 59px;
+  height: 64px;
 }
 .el-row {
   margin-bottom: 20px;

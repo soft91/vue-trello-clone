@@ -3,7 +3,7 @@
     <el-card
       class="listCard"
       shadow="always"
-    >test
+    >
       <router-link>
         test
       </router-link>

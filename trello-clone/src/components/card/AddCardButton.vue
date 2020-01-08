@@ -3,6 +3,7 @@
     <el-button
       v-if="toggleShow === true"
       v-show="toggleShow"
+      type="primary"
       class="addBtn"
       @click="toggleShow = !toggleShow"
     >
@@ -10,23 +11,25 @@
     </el-button>
     <div
       v-else-if="toggleShow === false"
-      class="add-list" 
+      class="add-list"
     >
-      <el-input 
-        v-model="title"
+      <el-input
+        v-model="cardTitle"
         placeholder="Enter list title..."
       />
-      <el-button 
-        type="success"
-        @click="addCard"
-      >
-        Add List
-      </el-button>
-      <el-button
-        type="primary" 
-        icon="el-icon-close"
-        @click="toggleShow = !toggleShow"
-      />
+      <div class="button-wrap">
+        <el-button
+          class="addlist-btn"
+          type="success"
+          @click="addCard"
+        >
+          Add List
+        </el-button>
+        <span
+          class="el-icon-close"
+          @click="toggleShow = !toggleShow"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -36,15 +39,17 @@ import Vue from 'vue';
 export default Vue.extend({
   data(){
     return {
-      cardItems : [],
-      title : '',
-      toggleShow : true
+      cardItems: [],
+      toggleShow: true,
+      cardTitle: ''
     }
   },
   methods: {
-    addCard(): void{
-      localStorage.setItem(this.title, this.title);
-      //this.cardItems.push(this.title);
+    addCard() {
+      // LocalStorage에 Card를 추가하는 이벤트
+
+      localStorage.setItem(this.cardTitle, this.cardTitle);
+      //this.cardItems.push(this.cardTitle);
       
       document.getElementsByTagName('input')[0].value = '';
       this.toggleShow = !this.toggleShow;
@@ -54,16 +59,31 @@ export default Vue.extend({
 </script>
 <style scoped>
 .container {
-  padding: 8px;
   text-align: left;
 }
 .add-list {
   width: 272px;
-  border: 1px solid black;
+  padding: 5px;
   border-radius: 5px;
+  background-color: #ebecf0
+}
+.button-wrap {
+  padding-top: 3px;
 }
 .addBtn {
   width: 272px;
   text-align: left;
+}
+.addlist-btn{
+  min-height: 32px;
+  height: 32px;
+  margin-top: 0;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+.el-icon-close {
+  cursor: pointer;
+  font-size: 27px;
+  vertical-align: middle;
 }
 </style>

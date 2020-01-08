@@ -1,13 +1,10 @@
 <template>
   <div class="card-list">
-    <el-row :gutter="12">
-      <el-col :span="6">
-        <Card @show="toggleShow" />
-      </el-col>
-      <el-col :span="6">
-        <Card @show="toggleShow" />
-      </el-col>
-      <el-col :span="6">
+    <h3 style="text-align:left;">
+      {{ $route.params.id }}
+    </h3>
+    <el-row :gutter="10">
+      <el-col :span="3.5">
         <Card @show="toggleShow" />
       </el-col>
       <el-col :span="3">
@@ -28,9 +25,9 @@ export default Vue.extend({
   },
   data(){
     return {
-      toggleShow: false
+      toggleShow: true
     }
-  }
+  },
 })
 </script>
 <style scoped>
