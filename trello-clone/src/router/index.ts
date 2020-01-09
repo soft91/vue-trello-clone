@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Main from '../components/Main.vue';
-import CardContainer from '../components/card/CardContainer.vue';
+import CardContainer from '../components/list/ListContainer.vue';
 
 Vue.use(VueRouter)
 
@@ -12,7 +12,7 @@ const routes = [
     component: Main
   },
   {
-    path: '/board/:id',
+    path: '/list/:id',
     component: CardContainer,
     props: true
   }

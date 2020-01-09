@@ -1,69 +1,78 @@
 <template>
-  <el-card class="card-container">
-    <div
-      slot="header" 
-      class="clearfix"
-    >
-      <span>Card Title</span> 
-      <!-- Title은 생성된 Add list의 Title을 받음 -->
+  <div>
+    <div>
+      <el-card
+        v-for="(value, index) in cardItems"
+        :key="index"
+        shadow="always"
+      >
+        <span>{{ value }}</span>
+      </el-card>
     </div>
-    <div
-      v-if="toggleShow === true"
-      class="text" 
-      @click="showAddCardList"
-    >
-      <span>+ Add a card</span>
-    </div>
-    <div
-      v-if="toggleShow === false"
-      class="add-list"
-    >
-      <el-input
-        v-model="textarea1"
-        type="textarea"
-        autosize
-        placeholder="Enter a title for this card..."
-      />
-      <div class="button-wrap">
-        <el-button
-          class="addlist-btn"
-          type="success"
-          @click="addCardList"
-        >
-          Add Card
-        </el-button>
-        <span
-          class="el-icon-close"
-          @click="toggleShow = !toggleShow"
+    <div>
+      <div
+        v-if="toggleShow === true"
+        class="text"
+        @click="toggleShow = !toggleShow"
+      >
+        <span>{{ addCardBtn }}</span>
+      </div>
+      <div
+        v-else-if="toggleShow === false"
+        class="add-list"
+      >
+        <el-input
+          v-model="cardTitle"
+          type="textarea"
+          autosize
+          placeholder="Enter a title for this card..."
         />
+        <div class="button-wrap">
+          <el-button
+            class="addlist-btn"
+            type="success"
+            @click="addCardList"
+          >
+            Add Card
+          </el-button>
+          <span
+            class="el-icon-close"
+            @click="toggleShow = !toggleShow"
+          />
+        </div>
       </div>
     </div>
-  </el-card>
+  </div>
 </template>
 <script lang="ts">
 import Vue from 'vue';
 
-
 export default Vue.extend({
   data(){
     return {
-      textarea1: '',
-      toggleShow: true
+      cardItems: new Array(),
+      cardTitle: '',
+      toggleShow: true,
+      addCardBtn: '+ Add a card'
     }
   },
-  methods: {
-    showAddCardList(): void{
-      // Card를 추가하는 Layout 출력 및 해제
+  created(){
+    // 1. 이미 list가 있을 경우 'Add a list'의 버튼 명이 'Add another list'로 변경
+    this.cardItems.length > 0 ? this.addCardBtn = '+ Add another card' : '+ Add a card'
 
-      this.toggleShow = !this.toggleShow;
-    },
+  },
+  methods: {
     addCardList(): void {
       // Card List를 등록하는 로직 구현.
 
+      const test = {
+        'test' : this.cardTitle
+      };
+
+      this.cardItems.push(test.test);
+
+      this.cardItems.length > 0 ? this.addCardBtn = '+ Add another card' : '+ Add a card'
       this.toggleShow = !this.toggleShow;
-    },
-    dragFunc(event : any) : void {
-      console.log(event);
     }
   }
 })
@@ -79,14 +88,13 @@ export default Vue.extend({
     border-radius: 3px;
   }
   .add-list {
-    padding: 5px;
     border-radius: 5px;
     background-color: #ebecf0;
   }
   .addlist-btn{
     min-height: 32px;
     height: 32px;
-    margin-top: 0;
+    margin-top: 3px;
     padding-top: 4px;
     padding-bottom: 4px;
   }
@@ -109,12 +117,8 @@ export default Vue.extend({
   .clearfix:after {
     clear: both
   }
-  .card-container {
-    width: 272px;
-    background-color: #ebecf0;
-  }
   .el-card__header, .el-card__body {
-    padding: 7px;
+    padding: 3px;
     text-align: left;
   }
 </style>

@@ -14,14 +14,14 @@
       class="add-list"
     >
       <el-input
-        v-model="cardTitle"
+        v-model="listTitle"
         placeholder="Enter list title..."
       />
       <div class="button-wrap">
         <el-button
           class="addlist-btn"
           type="success"
-          @click="addCard"
+          @click="addList"
         >
           Add List
         </el-button>
@@ -39,19 +39,14 @@ import Vue from 'vue';
 export default Vue.extend({
   data(){
     return {
-      cardItems: [],
-      toggleShow: true,
-      cardTitle: ''
+      listTitle: '',
+      toggleShow: true
     }
   },
   methods: {
-    addCard() {
-      // LocalStorage에 Card를 추가하는 이벤트
-
-      localStorage.setItem(this.cardTitle, this.cardTitle);
-      //this.cardItems.push(this.cardTitle);
-      
-      document.getElementsByTagName('input')[0].value = '';
+    addList() {
+      // List를 추가하는 이벤트
+      this.$emit('listName', this.listTitle);
       this.toggleShow = !this.toggleShow;
     }
   }

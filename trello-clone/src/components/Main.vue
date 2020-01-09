@@ -7,12 +7,12 @@
       </div>
       <el-row :gutter="12">
         <el-col
-          v-for="(value, index) in listitems"
+          v-for="(value, index) in boarditems"
           :key="index"
           :span="6"
           class="board-list-col-padding"
         >
-          <router-link :to="`/board/${value}`">
+          <router-link :to="`/list/${value}`">
             <el-card
               class="create-board-btn"
               shadow="always"
@@ -45,7 +45,7 @@
           autocomplete="off"
           @keyup.enter="createBoard"
         />
-        <span 
+        <span
           slot="footer" 
           class="dialog-footer"
         >
@@ -71,20 +71,20 @@ export default Vue.extend({
     return {
       listshow: true,
       dialogFormVisible: false,
-      listitems: [],
+      boarditems: [],
       boardTitle: ''
     }
   },
   created(){
-    // 앱이 초기화 할 때 LocalStroge에 저장되어 있는 값들을 리스트 배열안에 추가하여
+    // 앱이 초기화 할 때 Database에 저장되어 있는 값들을 리스트 배열안에 추가하여
     // 등록된 Board들을 메인 페이지에 출력.
 
-    if(localStorage.length > 0) {
-      for(var i = 0; i < localStorage.length; i++) {
-        if (localStorage.key(i) !== "loglevel:webpack-dev-server")
-          this.listitems.push(localStorage.key(i));
-      }
-    }
+    // if(localStorage.length > 0) {
+    //   for(var i = 0; i < localStorage.length; i++) {
+    //     if (localStorage.key(i) !== "loglevel:webpack-dev-server")
+    //       this.boarditems.push(localStorage.key(i));
+    //   }
+    // }
   },
   methods: {
     openDialog() {
@@ -94,9 +94,11 @@ export default Vue.extend({
     },
     createBoard() {
       // 메인 페이지에서 LocalStorage에 Board를 추가하는 이벤트
-      
-      localStorage.setItem(this.boardTitle, this.boardTitle);
-      this.listitems.push(this.boardTitle);
+
+      const test = {
+        'title' : this.boardTitle
+      }
+      this.boarditems.push(test.title);
       
       document.getElementsByTagName('input')[0].value = '';
       this.dialogFormVisible = false;
