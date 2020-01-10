@@ -5,8 +5,9 @@
         v-for="(value, index) in cardItems"
         :key="index"
         shadow="always"
+        class="item"
       >
-        <span>{{ value }}</span>
+        {{ value }}
       </el-card>
     </div>
     <div>
@@ -69,10 +70,9 @@ export default Vue.extend({
         'test' : this.cardTitle
       };
 
-      this.cardItems.push(test.test);
-
-      this.cardItems.length > 0 ? this.addCardBtn = '+ Add another card' : '+ Add a card'
-      this.toggleShow = !this.toggleShow;
+      this.cardTitle.length === 0 ? null : this.cardItems.push(test.test);
+      this.cardTitle = '';
+      this.cardItems.length > 0 ? this.addCardBtn = '+ Add another card' : '+ Add a card';
     }
   }
 })
@@ -82,6 +82,10 @@ export default Vue.extend({
     cursor: pointer;
     font-size: 14px;
     padding: 5px;
+  }
+  .item {
+    margin-bottom: 8px;
+    word-break: break-all;
   }
   .text:hover {
     background-color: #D5D5D5;
@@ -97,9 +101,6 @@ export default Vue.extend({
     margin-top: 3px;
     padding-top: 4px;
     padding-bottom: 4px;
-  }
-  .el-textarea__inner {
-    height: 54px;
   }
   .el-icon-close {
     cursor: pointer;
@@ -117,7 +118,11 @@ export default Vue.extend({
   .clearfix:after {
     clear: both
   }
-  .el-card__header, .el-card__body {
+  .el-card__header {
+    padding: 3px 0px 3px 13px;
+    text-align: left;
+  }
+  .el-card__body {
     padding: 3px;
     text-align: left;
   }

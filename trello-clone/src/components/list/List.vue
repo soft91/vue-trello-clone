@@ -1,5 +1,7 @@
 <template>
-  <el-card class="card-container">
+  <el-card 
+    class="card-container"
+  >
     <div
       slot="header"
       class="clearfix"
@@ -22,6 +24,11 @@ export default Vue.extend({
     title: {
       type: String,
       default: 'test'
+    }
+  },
+  data(){
+    return{
+      toggleblur: false
     }
   }
 })

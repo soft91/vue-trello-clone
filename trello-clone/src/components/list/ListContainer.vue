@@ -1,17 +1,29 @@
 <template>
-  <div class="card-list">
-    <h3 style="text-align:left;">
-      {{ $route.params.id }}
-    </h3>
-    <el-row :gutter="10">
+  <div>
+    <div class="list-title-wrap">
+      <span class="list-title">
+        {{ $route.params.id }}
+      </span>
+    </div>
+    <el-row 
+      :gutter="10"
+      class="card-list"  
+    >
       <el-col
         v-for="(value, index) in listItems"
         :key="index"
         :span="3.5"
       >
-        <List
-          :title="value"
-        />
+        <draggable
+          class="list-group"
+          group="people" 
+          @start="drag=true" 
+          @end="drag=true"
+        >
+          <List
+            :title="value"
+          />
+        </draggable>
       </el-col>
       <el-col :span="3">
         <div class="container">
@@ -27,10 +39,12 @@
           <div
             v-else-if="toggleShow === false"
             class="add-list"
+            @blur="test"
           >
             <el-input
               v-model="listTitle"
               placeholder="Enter list title..."
+              @keyup.enter.native="addList"
             />
             <div class="button-wrap">
               <el-button
@@ -54,10 +68,12 @@
 <script lang="ts">
 import Vue from 'vue';
 import List from '@/components/list/List.vue';
+import draggable from 'vuedraggable';
 
 export default Vue.extend({
   components: {
     List,
+    draggable
   },
   data(){
     return {
@@ -101,10 +117,12 @@ export default Vue.extend({
         'title' : this.listTitle
       };
 
-      this.listItems.push(`${test.title}`);
-      
-      this.listItems.length > 0 ? this.addListBtn = '+ Add another list' : '+ Add a list'
-      this.toggleShow = !this.toggleShow;
+      this.listTitle.length === 0 ? null : this.listItems.push(test.title);
+      this.listItems.length > 0 ? this.addListBtn = '+ Add another list' : '+ Add a list';
+      this.listTitle = '';
+    },
+    test(){
+      console.log('blur')
     }
   }
 })
@@ -112,6 +130,19 @@ export default Vue.extend({
 <style scoped>
 .card-list {
   padding: 8px;
+}
+.list-title-wrap {
+  color: white;
+  font-weight: bold;
+  background-color: rgb(0, 121, 191);
+  height: 32px;
+  text-align: left;
+}
+.list-title {
+  vertical-align: middle;
+  cursor: pointer;
+  padding: 0 12px;
+  font-size: 18px;
 }
 .container {
   text-align: left;

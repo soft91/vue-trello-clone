@@ -21,7 +21,7 @@
             </el-card>
           </router-link>
         </el-col>
-        <el-col 
+        <el-col
           :span="5"
           class="board-list-col-padding"
         >
@@ -38,12 +38,13 @@
       <el-dialog
         :visible.sync="dialogFormVisible"
         class="dialog-wrap"
+        width="18%"
       >
         <el-input 
           v-model="boardTitle" 
           placeholder="Add Board title" 
           autocomplete="off"
-          @keyup.enter="createBoard"
+          @keyup.enter.native="createBoard"
         />
         <span
           slot="footer" 
@@ -100,16 +101,13 @@ export default Vue.extend({
       }
       this.boarditems.push(test.title);
       
-      document.getElementsByTagName('input')[0].value = '';
+      this.boardTitle = '';
       this.dialogFormVisible = false;
     }
   }
 })
 </script>
 <style scoped>
-.home {
-  padding: 8px;
-}
 .board-list {
   width: 860px;
   margin: 0 auto;
@@ -122,7 +120,7 @@ export default Vue.extend({
   font-size: 15pt;
   padding-right: 5px;
 }
-.el-dialog{
+#dialog > div {
   width: 300px;
 }
 .board-list-col-padding {
@@ -132,6 +130,9 @@ export default Vue.extend({
   font-weight: bold;
   width: 206px;
   height: 64px;
+}
+.dialog-wrap > div {
+  width: 300px;
 }
 .el-row {
   margin-bottom: 20px;
