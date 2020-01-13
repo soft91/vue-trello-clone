@@ -27,7 +27,7 @@ import {Component, PropSync} from 'vue-property-decorator';
 
 export default class List extends Vue {
   @PropSync('title', {type: String, default: 'test'}) private msg!: string;
-  toggleblur: Boolean = false;
+  toggleblur: boolean = false;
 }
 </script>
 

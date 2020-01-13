@@ -11,10 +11,12 @@
     </router-link>
   </div>
 </template>
+
 <script lang="ts">
 import Vue from 'vue';
 export default class Header extends Vue{}
 </script>
+
 <style scoped>
 .header {
   height: 32px;

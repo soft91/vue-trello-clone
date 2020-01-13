@@ -74,9 +74,13 @@ import axios from 'axios';
 
 export default class Main extends Vue {
 
-  boarditems:        Array<Object> = [];
-  boardTitle:        String = '';
-  dialogFormVisible: Boolean = false;
+  boarditems:        object[] = [];
+  boardTitle:        string = '';
+  dialogFormVisible: boolean = false;
+
+  constructor(){
+    super();
+  }
 
   created(){
     // 앱이 초기화 할 때 Database에 저장되어 있는 값들을 리스트 배열안에 추가하여
@@ -104,6 +108,7 @@ export default class Main extends Vue {
       .then(response => {
         this.boarditems.push({id: response.data.insertId, title : this.boardTitle});
         
+    console.log(this.boarditems);
         this.boardTitle = '';
         this.dialogFormVisible = false;
       })

@@ -58,6 +58,7 @@
     </div>
   </div>
 </template>
+
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
@@ -73,9 +74,9 @@ import draggable from 'vuedraggable';
 
 export default class ListContainer extends Vue {
 
-  listItems:  String[] = [];
-  toggleShow: Boolean  = true;
-  listTitle:  String   = '';
+  listItems:  string[] = [];
+  toggleShow: boolean  = true;
+  listTitle:  string   = '';
 
   created(){
     // 추가 된 List를 listItems에 Setting 하여 List를 출력
@@ -92,6 +93,7 @@ export default class ListContainer extends Vue {
   }
 }
 </script>
+
 <style scoped>
 .list-title-wrap {
   color: white;

@@ -64,9 +64,9 @@ import draggable from 'vuedraggable';
 
 export default class Card extends Vue {
 
-  cardItems:  String[] = [];
-  cardTitle:  String   = '';
-  toggleShow: Boolean  = true;
+  cardItems:  string[] = [];
+  cardTitle:  string   = '';
+  toggleShow: boolean  = true;
 
   created(){
     // List에 등록된 Card들의 배열을 Setting
