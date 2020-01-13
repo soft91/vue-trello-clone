@@ -4,9 +4,9 @@
   >
     <div
       slot="header"
-      class="clearfix"
+      class="clearfix title"
     >
-      <span class="title">{{ title }}</span>
+      <span>{{ title }}</span>
     </div>
     <div>
       <Card />
@@ -35,6 +35,7 @@ export default Vue.extend({
 </script>
 <style scoped>
   .title {
+    cursor: pointer;
     font-weight: bold;
   }
   .text {

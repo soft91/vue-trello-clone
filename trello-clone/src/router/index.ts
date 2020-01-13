@@ -12,6 +12,7 @@ const routes = [
     component: Main
   },
   {
+    name: 'list',
     path: '/list/:id',
     component: CardContainer,
     props: true

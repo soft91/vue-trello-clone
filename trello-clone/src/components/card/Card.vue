@@ -1,14 +1,19 @@
 <template>
   <div>
     <div>
-      <el-card
-        v-for="(value, index) in cardItems"
-        :key="index"
-        shadow="always"
-        class="item"
+      <draggable
+        class="list-group"
+        group="card"
       >
-        {{ value }}
-      </el-card>
+        <el-card
+          v-for="(value, index) in cardItems"
+          :key="index"
+          shadow="always"
+          class="item"
+        >
+          {{ value }}
+        </el-card>
+      </draggable>
     </div>
     <div>
       <div
@@ -16,7 +21,7 @@
         class="text"
         @click="toggleShow = !toggleShow"
       >
-        <span>{{ addCardBtn }}</span>
+        <span>{{ cardItems.length > 0 ? '+ Add another card' : '+ Add a card' }}</span>
       </div>
       <div
         v-else-if="toggleShow === false"
@@ -47,20 +52,21 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
+import draggable from 'vuedraggable';
 
 export default Vue.extend({
+  components: {
+    draggable
+  },
   data(){
     return {
       cardItems: new Array(),
       cardTitle: '',
-      toggleShow: true,
-      addCardBtn: '+ Add a card'
+      toggleShow: true
     }
   },
   created(){
-    // 1. 이미 list가 있을 경우 'Add a list'의 버튼 명이 'Add another list'로 변경
-    this.cardItems.length > 0 ? this.addCardBtn = '+ Add another card' : '+ Add a card'
-
+    // List에 등록된 Card들의 배열을 Setting
   },
   methods: {
     addCardList(): void {
@@ -72,7 +78,6 @@ export default Vue.extend({
 
       this.cardTitle.length === 0 ? null : this.cardItems.push(test.test);
       this.cardTitle = '';
-      this.cardItems.length > 0 ? this.addCardBtn = '+ Add another card' : '+ Add a card';
     }
   }
 })
@@ -84,8 +89,12 @@ export default Vue.extend({
     padding: 5px;
   }
   .item {
+    cursor: pointer;
     margin-bottom: 8px;
     word-break: break-all;
+  }
+  .item:hover {
+    background-color: aquamarine;
   }
   .text:hover {
     background-color: #D5D5D5;

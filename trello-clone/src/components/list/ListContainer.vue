@@ -2,46 +2,39 @@
   <div>
     <div class="list-title-wrap">
       <span class="list-title">
-        {{ $route.params.id }}
+        {{ this.$route.query.title }}
       </span>
     </div>
-    <el-row 
-      :gutter="10"
-      class="card-list"  
-    >
-      <el-col
+    <div class="list-wrap">
+      <div
         v-for="(value, index) in listItems"
         :key="index"
-        :span="3.5"
       >
         <draggable
           class="list-group"
-          group="people" 
-          @start="drag=true" 
-          @end="drag=true"
+          group="people"
         >
           <List
             :title="value"
           />
         </draggable>
-      </el-col>
-      <el-col :span="3">
+      </div>
+      <div>
         <div class="container">
           <el-button
             v-if="toggleShow === true"
-            v-show="toggleShow"
             type="primary"
             class="addBtn"
             @click="toggleShow = !toggleShow"
           >
-            {{ addListBtn }}
+            {{ listItems.length > 0 ? '+ Add another list' : '+ Add a list' }}
           </el-button>
           <div
             v-else-if="toggleShow === false"
             class="add-list"
-            @blur="test"
           >
             <el-input
+              ref="listTitleInput"
               v-model="listTitle"
               placeholder="Enter list title..."
               @keyup.enter.native="addList"
@@ -61,8 +54,8 @@
             </div>
           </div>
         </div>
-      </el-col>
-    </el-row>
+      </div>
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -78,65 +71,41 @@ export default Vue.extend({
   data(){
     return {
       listItems: new Array(),
-      addListBtn: '+ Add a list',
       toggleShow: true,
       listTitle: ''
     }
   },
   created(){
-    // 1. 이미 list가 있을 경우 'Add a list'의 버튼 명이 'Add another list'로 변경
-    this.listItems.length > 0 ? this.addListBtn = '+ Add another list' : '+ Add a list'
-
-    //여기서 이 아이디 값을 가지고 서버에서 로드 했다고 치고 이 데이터를 List와 바인딩
-
-    // this.children = {
-    //   'name' : 'sdtset',
-    //   'lists' : [
-    //     {
-    //       'list_title' : 'g',
-    //       'cards' : [
-    //         {
-    //           'parent' : 'g',
-    //           'uuid' : 'sdfsadfsdafsadf'
-    //           'card_title' : 'a',
-    //         }
-    //       ]
-    //     },
-    //     {
-    //       'list_title' : 'f',
-    //       'cards' : []
-    //     }
-    //   ]
-    // }
+    // 추가 된 List를 listItems에 Setting 하여 List를 출력
   },
   methods: {
     addList() {
       // List를 추가하는 이벤트
-
       const test = {
         'title' : this.listTitle
       };
 
       this.listTitle.length === 0 ? null : this.listItems.push(test.title);
-      this.listItems.length > 0 ? this.addListBtn = '+ Add another list' : '+ Add a list';
       this.listTitle = '';
     },
     test(){
-      console.log('blur')
+      console.log(this.$refs.listTitleInput)
     }
   }
 })
 </script>
 <style scoped>
-.card-list {
-  padding: 8px;
-}
 .list-title-wrap {
   color: white;
   font-weight: bold;
   background-color: rgb(0, 121, 191);
   height: 32px;
   text-align: left;
+}
+.list-wrap {
+  display: flex;
+  padding: 8px;
+  overflow: auto;
 }
 .list-title {
   vertical-align: middle;

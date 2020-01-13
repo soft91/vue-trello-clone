@@ -12,12 +12,12 @@
           :span="6"
           class="board-list-col-padding"
         >
-          <router-link :to="`/list/${value}`">
+          <router-link :to="{path: `/list/${value.id}`, query: { title: value.title }}">
             <el-card
               class="create-board-btn"
               shadow="always"
             >
-              {{ value }}
+              {{ value.title }}
             </el-card>
           </router-link>
         </el-col>
@@ -28,7 +28,7 @@
           <el-button
             class="create-board-btn"
             type="primary"
-            @click="openDialog"
+            @click="dialogFormVisible = !dialogFormVisible"
           >
             Create new Board
           </el-button>
@@ -65,6 +65,7 @@
 
 <script>
 import Vue from 'vue';
+import axios from 'axios';
 
 export default Vue.extend({
   name: 'MainBoard',
@@ -80,29 +81,34 @@ export default Vue.extend({
     // 앱이 초기화 할 때 Database에 저장되어 있는 값들을 리스트 배열안에 추가하여
     // 등록된 Board들을 메인 페이지에 출력.
 
-    // if(localStorage.length > 0) {
-    //   for(var i = 0; i < localStorage.length; i++) {
-    //     if (localStorage.key(i) !== "loglevel:webpack-dev-server")
-    //       this.boarditems.push(localStorage.key(i));
-    //   }
-    // }
+    let self = this;
+
+    axios.get('http://localhost:4000/')
+      .then(response => {
+        self.boarditems = response.data.map(r => r);
+      })
+      .catch(err => {
+        console.error('fetch failed', err);
+      });
   },
   methods: {
-    openDialog() {
-      // 메인 페이지에서 Board를 추가하기 위한 Input Dialog를 Open
-
-      this.dialogFormVisible = true;
-    },
     createBoard() {
       // 메인 페이지에서 LocalStorage에 Board를 추가하는 이벤트
 
-      const test = {
-        'title' : this.boardTitle
-      }
-      this.boarditems.push(test.title);
-      
-      this.boardTitle = '';
-      this.dialogFormVisible = false;
+      axios.get('http://localhost:4000/addBoard',{
+        params : {
+          title : this.boardTitle
+          }
+        })
+        .then(response => {
+          this.boarditems.push({id: response.data.insertId, title : this.boardTitle});
+          
+          this.boardTitle = '';
+          this.dialogFormVisible = false;
+        })
+        .catch(err => {
+            console.error('fetch failed', err);
+        });
     }
   }
 })
