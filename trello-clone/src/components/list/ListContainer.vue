@@ -60,39 +60,37 @@
 </template>
 <script lang="ts">
 import Vue from 'vue';
+import Component from 'vue-class-component';
 import List from '@/components/list/List.vue';
 import draggable from 'vuedraggable';
 
-export default Vue.extend({
+@Component({
   components: {
     List,
     draggable
-  },
-  data(){
-    return {
-      listItems: new Array(),
-      toggleShow: true,
-      listTitle: ''
-    }
-  },
-  created(){
-    // 추가 된 List를 listItems에 Setting 하여 List를 출력
-  },
-  methods: {
-    addList() {
-      // List를 추가하는 이벤트
-      const test = {
-        'title' : this.listTitle
-      };
-
-      this.listTitle.length === 0 ? null : this.listItems.push(test.title);
-      this.listTitle = '';
-    },
-    test(){
-      console.log(this.$refs.listTitleInput)
-    }
   }
 })
+
+export default class ListContainer extends Vue {
+
+  listItems:  String[] = [];
+  toggleShow: Boolean  = true;
+  listTitle:  String   = '';
+
+  created(){
+    // 추가 된 List를 listItems에 Setting 하여 List를 출력
+  }
+  
+  addList() {
+    // List를 추가하는 이벤트
+    const test = {
+      'title' : this.listTitle
+    };
+
+    this.listTitle.length === 0 ? null : this.listItems.push(test.title);
+    this.listTitle = '';
+  }
+}
 </script>
 <style scoped>
 .list-title-wrap {

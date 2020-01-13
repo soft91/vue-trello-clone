@@ -50,38 +50,41 @@
     </div>
   </div>
 </template>
+
 <script lang="ts">
 import Vue from 'vue';
+import Component from 'vue-class-component';
 import draggable from 'vuedraggable';
 
-export default Vue.extend({
+@Component({
   components: {
     draggable
-  },
-  data(){
-    return {
-      cardItems: new Array(),
-      cardTitle: '',
-      toggleShow: true
-    }
-  },
-  created(){
-    // List에 등록된 Card들의 배열을 Setting
-  },
-  methods: {
-    addCardList(): void {
-      // Card List를 등록하는 로직 구현.
-
-      const test = {
-        'test' : this.cardTitle
-      };
-
-      this.cardTitle.length === 0 ? null : this.cardItems.push(test.test);
-      this.cardTitle = '';
-    }
   }
 })
+
+export default class Card extends Vue {
+
+  cardItems:  String[] = [];
+  cardTitle:  String   = '';
+  toggleShow: Boolean  = true;
+
+  created(){
+    // List에 등록된 Card들의 배열을 Setting
+  }
+
+  addCardList() {
+    // Card List를 등록하는 로직 구현.
+
+    const test = {
+      'test' : this.cardTitle
+    };
+
+    this.cardTitle.length === 0 ? null : this.cardItems.push(test.test);
+    this.cardTitle = '';
+  }
+}
 </script>
+
 <style>
   .text {
     cursor: pointer;

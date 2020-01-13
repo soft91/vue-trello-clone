@@ -63,20 +63,21 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import Vue from 'vue';
+import Component from 'vue-class-component'
 import axios from 'axios';
 
-export default Vue.extend({
-  name: 'MainBoard',
-  data(){
-    return {
-      listshow: true,
-      dialogFormVisible: false,
-      boarditems: [],
-      boardTitle: ''
-    }
-  },
+@Component({
+  name: 'Mainboard'
+})
+
+export default class Main extends Vue {
+
+  boarditems:        Array<Object> = [];
+  boardTitle:        String = '';
+  dialogFormVisible: Boolean = false;
+
   created(){
     // 앱이 초기화 할 때 Database에 저장되어 있는 값들을 리스트 배열안에 추가하여
     // 등록된 Board들을 메인 페이지에 출력.
@@ -85,33 +86,32 @@ export default Vue.extend({
 
     axios.get('http://localhost:4000/')
       .then(response => {
-        self.boarditems = response.data.map(r => r);
+        self.boarditems = response.data.map((r: Object) => r);
       })
       .catch(err => {
         console.error('fetch failed', err);
       });
-  },
-  methods: {
-    createBoard() {
-      // 메인 페이지에서 LocalStorage에 Board를 추가하는 이벤트
-
-      axios.get('http://localhost:4000/addBoard',{
-        params : {
-          title : this.boardTitle
-          }
-        })
-        .then(response => {
-          this.boarditems.push({id: response.data.insertId, title : this.boardTitle});
-          
-          this.boardTitle = '';
-          this.dialogFormVisible = false;
-        })
-        .catch(err => {
-            console.error('fetch failed', err);
-        });
-    }
   }
-})
+
+  createBoard() {
+    // 메인 페이지에서 LocalStorage에 Board를 추가하는 이벤트
+
+    axios.get('http://localhost:4000/addBoard',{
+      params : {
+        title : this.boardTitle
+        }
+      })
+      .then(response => {
+        this.boarditems.push({id: response.data.insertId, title : this.boardTitle});
+        
+        this.boardTitle = '';
+        this.dialogFormVisible = false;
+      })
+      .catch(err => {
+          console.error('fetch failed', err);
+      });
+  }
+}
 </script>
 <style scoped>
 .board-list {

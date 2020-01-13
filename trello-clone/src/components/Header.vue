@@ -12,10 +12,8 @@
   </div>
 </template>
 <script lang="ts">
-import Vue from 'vue'
-export default Vue.extend({
-    
-})
+import Vue from 'vue';
+export default class Header extends Vue{}
 </script>
 <style scoped>
 .header {

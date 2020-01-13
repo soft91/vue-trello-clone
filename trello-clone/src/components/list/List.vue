@@ -13,26 +13,24 @@
     </div>
   </el-card>
 </template>
+
 <script lang="ts">
 import Vue from 'vue';
 import Card from '@/components/card/Card.vue';
-export default Vue.extend({
+import {Component, PropSync} from 'vue-property-decorator';
+
+@Component({
   components: {
     Card
-  },
-  props: {
-    title: {
-      type: String,
-      default: 'test'
-    }
-  },
-  data(){
-    return{
-      toggleblur: false
-    }
   }
 })
+
+export default class List extends Vue {
+  @PropSync('title', {type: String, default: 'test'}) private msg!: string;
+  toggleblur: Boolean = false;
+}
 </script>
+
 <style scoped>
   .title {
     cursor: pointer;
