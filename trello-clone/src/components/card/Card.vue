@@ -70,9 +70,10 @@ export default class Card extends Vue {
 
   created(){
     // List에 등록된 Card들의 배열을 Setting
+    this.cardItems = ['1','2','3']
   }
 
-  addCardList() {
+  addCardList(): void {
     // Card List를 등록하는 로직 구현.
 
     const test = {

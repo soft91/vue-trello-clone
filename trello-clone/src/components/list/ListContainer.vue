@@ -6,20 +6,21 @@
       </span>
     </div>
     <div class="list-wrap">
-      <div
-        v-for="(value, index) in listItems"
-        :key="index"
+      <draggable
+        class="list-group-wrap"
+        group="list"
       >
-        <draggable
+        <div
+          v-for="(value, index) in listItems"
+          :key="index"
           class="list-group"
-          group="people"
         >
           <List
             :title="value"
           />
-        </draggable>
-      </div>
-      <div>
+        </div>
+      </draggable>
+      <div class="list-group-wrap">
         <div class="container">
           <el-button
             v-if="toggleShow === true"
@@ -58,6 +59,7 @@
     </div>
   </div>
 </template>
+
 <script lang="ts">
 import Vue from 'vue';
 import Component from 'vue-class-component';
@@ -79,9 +81,12 @@ export default class ListContainer extends Vue {
 
   created(){
     // 추가 된 List를 listItems에 Setting 하여 List를 출력
+    
+    // Ex
+    this.listItems = ['1','2','3','4'];
   }
   
-  addList() {
+  addList(): void {
     // List를 추가하는 이벤트
     const test = {
       'title' : this.listTitle
@@ -92,6 +97,7 @@ export default class ListContainer extends Vue {
   }
 }
 </script>
+
 <style scoped>
 .list-title-wrap {
   color: white;
@@ -104,6 +110,14 @@ export default class ListContainer extends Vue {
   display: flex;
   padding: 8px;
   overflow: auto;
+}
+.list-group {
+  display: flex;
+  padding: 3px;
+}
+.list-group-wrap {
+  display: flex;
+  padding: 3px;
 }
 .list-title {
   vertical-align: middle;

@@ -93,7 +93,7 @@ export default class Main extends Vue {
       });
   }
 
-  createBoard() {
+  createBoard(): void {
     // 메인 페이지에서 LocalStorage에 Board를 추가하는 이벤트
 
     axios.get('http://localhost:4000/addBoard',{
