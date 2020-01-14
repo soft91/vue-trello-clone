@@ -33,6 +33,30 @@ app.get('/addBoard', function(req, res){
       res.send(rows);
     }
   });
+});
+
+app.get('/searchList', function(req, res){
+  const params = [req.query.bno];
+
+  connection.query('SELECT * FROM trello_list WHERE bno = ?', params, function(err, rows) {
+    if(err) throw err;
+
+    res.send(rows);
+  });
+})
+
+app.get('/addList', function(req, res){
+  const params = [req.query.bno, req.query.title];
+
+  connection.query('INSERT INTO trello_list(bno, title) VALUES(?, ?)', params, function(err, rows){
+    
+    if(err){
+      console.log(err);
+    }else{
+      console.log(rows.insertId);
+      res.send(rows);
+    }
+  });
 })
 
 app.listen(PORT, function(){

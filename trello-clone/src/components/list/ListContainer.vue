@@ -16,7 +16,7 @@
           class="list-group"
         >
           <List
-            :title="value"
+            :title="value.title"
           />
         </div>
       </draggable>
@@ -64,6 +64,7 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import List from '@/components/list/List.vue';
+import axios from 'axios';
 import draggable from 'vuedraggable';
 
 @Component({
@@ -75,25 +76,47 @@ import draggable from 'vuedraggable';
 
 export default class ListContainer extends Vue {
 
-  listItems:  string[] = [];
+  listItems:  object[] = [];
   toggleShow: boolean  = true;
   listTitle:  string   = '';
 
   created(){
     // 추가 된 List를 listItems에 Setting 하여 List를 출력
-    
-    // Ex
-    this.listItems = ['1','2','3','4'];
+    let self = this;
+
+    axios.get('http://localhost:4000/searchList', {
+      params : {
+        bno: this.$route.params.id
+      }
+    })
+      .then(response => {
+        self.listItems = response.data.map((r: Object) => r);
+
+        console.log(self.listItems);
+      })
+      .catch(err => {
+        console.error('fetch failed', err);
+      });
+
   }
   
   addList(): void {
     // List를 추가하는 이벤트
-    const test = {
-      'title' : this.listTitle
-    };
+    axios.get('http://localhost:4000/addList',{
+      params : {
+        title : this.listTitle,
+        bno: this.$route.params.id
+      }
+    })
+      .then(response => {
+        this.listItems.push({id: response.data.insertId, title : this.listTitle});
 
-    this.listTitle.length === 0 ? null : this.listItems.push(test.title);
-    this.listTitle = '';
+        this.listTitle = '';
+        this.toggleShow = !this.toggleShow;
+      })
+      .catch(err => {
+          console.error('fetch failed', err);
+      });
   }
 }
 </script>

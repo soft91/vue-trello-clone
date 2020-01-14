@@ -102,13 +102,12 @@ export default class Main extends Vue {
 
     axios.get('http://localhost:4000/addBoard',{
       params : {
-        title : this.boardTitle
+          title : this.boardTitle
         }
       })
       .then(response => {
         this.boarditems.push({id: response.data.insertId, title : this.boardTitle});
         
-    console.log(this.boarditems);
         this.boardTitle = '';
         this.dialogFormVisible = false;
       })
