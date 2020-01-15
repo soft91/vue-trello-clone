@@ -1,8 +1,18 @@
 <template>
   <div>
     <div class="list-title-wrap">
-      <span class="list-title">
-        {{ this.$route.query.title }}
+      <el-input
+        style="width:auto"
+        v-model="title"
+        v-if="showInput === true"
+        @blur="boardTitleUpdate"
+      />
+      <span 
+        v-else
+        class="list-title"
+        @click="showInput = !showInput"
+      >
+        {{ title }}
       </span>
     </div>
     <div class="list-wrap">
@@ -17,6 +27,7 @@
         >
           <List
             :title="value.title"
+            :list_id="value.id"
           />
         </div>
       </draggable>
@@ -73,31 +84,31 @@ import draggable from 'vuedraggable';
     draggable
   }
 })
-
 export default class ListContainer extends Vue {
 
   listItems:  object[] = [];
   toggleShow: boolean  = true;
   listTitle:  string   = '';
+  showInput:  boolean  = false;
+  title: string = '';
+  originalTitle: string = '';
 
   created(){
     // 추가 된 List를 listItems에 Setting 하여 List를 출력
     let self = this;
+    this.title = this.originalTitle = String(this.$route.query.title);
 
-    axios.get('http://localhost:4000/searchList', {
+    axios.get('http://localhost:4000/list', {
       params : {
         bno: this.$route.params.id
       }
     })
       .then(response => {
         self.listItems = response.data.map((r: Object) => r);
-
-        console.log(self.listItems);
       })
       .catch(err => {
         console.error('fetch failed', err);
       });
-
   }
   
   addList(): void {
@@ -117,6 +128,27 @@ export default class ListContainer extends Vue {
       .catch(err => {
           console.error('fetch failed', err);
       });
+  }
+
+  async boardTitleUpdate(): Promise<boolean> {
+    if(this.originalTitle === this.title){
+      this.showInput = !this.showInput;
+    } else {
+      try {
+        await axios.get('http://localhost:4000/BoardTitleUpdate', {
+          params: {
+            boardTitle: this.title,
+            id: this.$route.params.id
+          }
+        });
+        this.showInput = !this.showInput;
+      }
+      catch(error) {
+        console.error(error);
+      }
+    }
+    
+    return true;
   }
 }
 </script>

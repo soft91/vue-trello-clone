@@ -5,11 +5,24 @@
     <div
       slot="header"
       class="clearfix title"
-    >
-      <span>{{ title }}</span>
+    > 
+      <el-input
+        style="width:auto"
+        v-model="changeTitle"
+        v-if="showInput === true"
+        @blur="listTitleUpdate"
+      />
+      <span 
+        v-else
+        @click="showInput = !showInput"
+      >
+        {{ changeTitle }}
+      </span>
     </div>
     <div>
-      <Card />
+      <Card 
+        :listId="list_id"
+      />
     </div>
   </el-card>
 </template>
@@ -17,7 +30,8 @@
 <script lang="ts">
 import Vue from 'vue';
 import Card from '@/components/card/Card.vue';
-import {Component, PropSync} from 'vue-property-decorator';
+import axios from 'axios';
+import { Component, PropSync, Prop } from 'vue-property-decorator';
 
 @Component({
   components: {
@@ -26,8 +40,35 @@ import {Component, PropSync} from 'vue-property-decorator';
 })
 
 export default class List extends Vue {
-  @PropSync('title', {type: String, default: 'test'}) private msg!: string;
-  toggleblur: boolean = false;
+
+  @Prop() title!: string;
+  @Prop() list_id!: string;
+
+  showInput:   boolean = false;
+  changeTitle: string  = this.title;
+  
+  listTitleUpdate(): void {
+    // blur 처리를 할 때 List 타이틀의 이름을 바꿈.
+
+    if(this.title == this.changeTitle){
+      this.showInput = !this.showInput;
+      return;
+    } else {
+      axios.get('http://localhost:4000/listTitleUpdate', {
+        params: {
+          id: this.list_id,
+          listTitle: this.changeTitle
+        }
+      })
+      .then(Response => {
+        console.log(Response);
+        this.showInput = !this.showInput;
+      })
+      .catch(error => {
+        console.log(error);
+      })
+    }
+  }
 }
 </script>
 

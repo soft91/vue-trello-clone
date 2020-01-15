@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+    <div @change="changeItem">
       <draggable
         class="list-group"
         group="card"
@@ -11,7 +11,7 @@
           shadow="always"
           class="item"
         >
-          {{ value }}
+          {{ value.title }}
         </el-card>
       </draggable>
     </div>
@@ -37,7 +37,7 @@
           <el-button
             class="addlist-btn"
             type="success"
-            @click="addCardList"
+            @click="addCard"
           >
             Add Card
           </el-button>
@@ -53,7 +53,8 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import Component from 'vue-class-component';
+import { Component, Prop } from 'vue-property-decorator';
+import axios from 'axios';
 import draggable from 'vuedraggable';
 
 @Component({
@@ -64,23 +65,57 @@ import draggable from 'vuedraggable';
 
 export default class Card extends Vue {
 
-  cardItems:  string[] = [];
+  @Prop() listId!: string;
+
+  cardItems:  object[] = [];
   cardTitle:  string   = '';
   toggleShow: boolean  = true;
 
   created(){
     // List에 등록된 Card들의 배열을 Setting
+    let self = this;
+
+    axios.get('http://localhost:4000/card', {
+      params : {
+        lid: this.listId
+      }
+    })
+      .then(response => {
+        self.cardItems = response.data.map((r: Object) => r);
+      })
+      .catch(err => {
+        console.error('fetch failed', err);
+      });
   }
 
-  addCardList(): void {
+  addCard(): void {
     // Card List를 등록하는 로직 구현.
 
-    const test = {
-      'test' : this.cardTitle
-    };
+    axios.get('http://localhost:4000/addCard',{
+      params : {
+        lid: this.listId,
+        title : this.cardTitle
+      }
+    })
+      .then(response => {
+        this.cardItems.push({id: response.data.insertId, title : this.cardTitle});
 
-    this.cardTitle.length === 0 ? null : this.cardItems.push(test.test);
-    this.cardTitle = '';
+        this.cardTitle = '';
+        this.toggleShow = !this.toggleShow;
+      })
+      .catch(err => {
+          console.error('fetch failed', err);
+      });
+  }
+
+  changeItem(evt: any): void {
+    // cardItem이 이동을 했을 때의 처리(Update)
+
+    
+  }
+
+  deleteCard(): void {
+    // cardItem을 삭제 했을 때 발생되는 처리(Delete)
   }
 }
 </script>
