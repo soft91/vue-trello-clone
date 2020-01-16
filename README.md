@@ -26,7 +26,7 @@
 $ tree my-first-blog
 my-first-blog/
 ├── blog
-│   ├── [__init__.py](https://google.com)
+│   ├── [PythonAnywhere wiki에 있는 일반적인 디버깅 방법](https://www.pythonanywhere.com/wiki/DebuggingImportError)
 │   ├── admin.py
 │   ├── migrations
 │   │   ├── 0001_initial.py
