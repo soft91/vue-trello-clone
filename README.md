@@ -1,5 +1,4 @@
 # vue-trello-clone
-> Trello 클론 
 
 <!-- TABLE OF CONTENTS -->
 ## 목차
@@ -8,7 +7,7 @@
   * [프로젝트 환경](#built-with)
 * [시작하기](#getting-started)
   * [설치 방법](#installation)
-
+* [사용방법](#Usage example)
 
 
 <!-- ABOUT THE PROJECT -->
@@ -44,3 +43,6 @@ git clone https://github.com/soft91/vue-trello-clone.git
 ```sh
 npm install
 ```
+
+## 사용 방법
+<https://trello.com/> 사용법 
