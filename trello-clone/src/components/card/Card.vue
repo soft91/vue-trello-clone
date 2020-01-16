@@ -91,6 +91,10 @@ export default class Card extends Vue {
   addCard(): void {
     // Card List를 등록하는 로직 구현.
 
+    if(this.cardTitle.length === 0) {
+      return;
+    }
+
     axios.get('http://localhost:4000/addCard',{
       params : {
         lid: this.listId,

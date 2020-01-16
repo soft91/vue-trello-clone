@@ -1,19 +1,21 @@
 <template>
   <div>
     <div class="list-title-wrap">
-      <el-input
-        style="width:auto"
-        v-model="title"
-        v-if="showInput === true"
-        @blur="boardTitleUpdate"
-      />
-      <span 
-        v-else
-        class="list-title"
-        @click="showInput = !showInput"
-      >
-        {{ title }}
-      </span>
+      <div class="title-container">
+        <input
+          v-if="showInput === true"
+          v-model="title"
+          @blur="boardTitleUpdate"
+          @keyup.enter.native="$event.target.blur()"
+        />
+        <span 
+          v-else
+          class="list-title"
+          @click="showInputEdit"
+        >
+          {{ title }}
+        </span>
+      </div>
     </div>
     <div class="list-wrap">
       <draggable
@@ -110,9 +112,19 @@ export default class ListContainer extends Vue {
         console.error('fetch failed', err);
       });
   }
+
+  showInputEdit(): void {
+    console.log(this.$refs.input);
+    this.showInput = !this.showInput;
+  }
   
   addList(): void {
     // List를 추가하는 이벤트
+    
+    if(this.listTitle.length === 0) {
+      return;
+    }
+
     axios.get('http://localhost:4000/addList',{
       params : {
         title : this.listTitle,
@@ -130,7 +142,10 @@ export default class ListContainer extends Vue {
       });
   }
 
-  async boardTitleUpdate(): Promise<boolean> {
+  async boardTitleUpdate(event: any): Promise<boolean> {
+
+    event.stopPropagation();
+
     if(this.originalTitle === this.title){
       this.showInput = !this.showInput;
     } else {
@@ -160,6 +175,7 @@ export default class ListContainer extends Vue {
   background-color: rgb(0, 121, 191);
   height: 32px;
   text-align: left;
+  padding: 8px 4px 4px 8px;
 }
 .list-wrap {
   display: flex;
@@ -167,7 +183,7 @@ export default class ListContainer extends Vue {
   overflow: auto;
 }
 .list-group {
-  display: flex;
+  display: inline-block;
   padding: 3px;
 }
 .list-group-wrap {

@@ -1,6 +1,5 @@
 <template>
   <div 
-    id="nav" 
     class="header"
   >
     <router-link
@@ -20,11 +19,10 @@ export default class Header extends Vue{}
 <style scoped>
 .header {
   height: 32px;
-  position: relative;
   background: #026aa7;
   overflow: hidden;
-  width: 100%;
   padding: 4px;
+  text-align: center;
 }
 .main-link {
   display: block;
@@ -51,11 +49,6 @@ export default class Header extends Vue{}
   text-align: center;
   color: #2c3e50;
 }
-
-#nav {
-  text-align: center;
-}
-
 a {
   vertical-align: middle;
 }

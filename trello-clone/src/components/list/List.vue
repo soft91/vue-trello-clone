@@ -7,10 +7,10 @@
       class="clearfix title"
     > 
       <el-input
-        style="width:auto"
         v-model="changeTitle"
         v-if="showInput === true"
         @blur="listTitleUpdate"
+        @keyup.enter.native="$event.target.blur()"
       />
       <span 
         v-else
@@ -20,7 +20,7 @@
       </span>
     </div>
     <div>
-      <Card 
+      <Card
         :listId="list_id"
       />
     </div>
@@ -61,7 +61,6 @@ export default class List extends Vue {
         }
       })
       .then(Response => {
-        console.log(Response);
         this.showInput = !this.showInput;
       })
       .catch(error => {
