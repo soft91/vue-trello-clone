@@ -26,7 +26,7 @@
 $ tree my-first-blog
 my-first-blog/
 ├── blog
-│   ├── __init__.py
+│   ├── [__init__.py](https://google.com)
 │   ├── admin.py
 │   ├── migrations
 │   │   ├── 0001_initial.py
