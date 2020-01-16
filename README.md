@@ -7,7 +7,7 @@
   * [프로젝트 환경](#built-with)
 * [시작하기](#getting-started)
   * [설치 방법](#installation)
-* [사용 ](#usage)
+* [사용 방법](#usage)
 
 
 <!-- ABOUT THE PROJECT -->
