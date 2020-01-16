@@ -1,6 +1,5 @@
 # vue-trello-clone
 
-<!-- TABLE OF CONTENTS -->
 ## 목차
 
 * [프로젝트 정보](#about-the-project)
@@ -11,14 +10,18 @@
 * [사용 방법](#usage)
 
 
-<!-- ABOUT THE PROJECT -->
 ## 프로젝트 정보
 
 ### 프로젝트 환경
 
+1. Vue.js (@vue/vli 4.1.1, vue-router)
+2. Typescript
+3. Node.js Express
+4. Mysql
+5. Element-UI
+
 ### 프로젝트 구조
 
-<!-- GETTING STARTED -->
 ## 시작하기
 
 ### 설치 방법
@@ -33,4 +36,4 @@ npm install
 ```
 
 ## 사용 방법
-<https://trello.com/> 사용법 
+<https://trello.com/>
