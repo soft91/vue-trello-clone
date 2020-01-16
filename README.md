@@ -22,6 +22,26 @@
 
 ### 프로젝트 구조
 
+```
+$ tree my-first-blog
+my-first-blog/
+├── blog
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── migrations
+│   │   ├── 0001_initial.py
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── tests.py
+│   └── views.py
+├── manage.py
+└── mysite
+    ├── __init__.py
+    ├── settings.py
+    ├── urls.py
+    └── wsgi.py
+```
+
 ## 시작하기
 
 ### 설치 방법
