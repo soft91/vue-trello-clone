@@ -14,7 +14,7 @@
 
 ### 프로젝트 환경
 
-1. Vue.js (@vue/vli 4.1.1, vue-router)
+1. Vue.js (@vue/cli 4.1.1)
 2. Typescript
 3. Node.js Express
 4. Mysql
@@ -36,4 +36,4 @@ npm install
 ```
 
 ## 사용 방법
-<https://trello.com/>
+<https://trello.com/> 참고
