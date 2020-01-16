@@ -1,18 +1,18 @@
 # vue-trello-clone
-
+> Trello 클론 
 
 <!-- TABLE OF CONTENTS -->
-## Table of Contents
+## 목차
 
-* [About the Project](#about-the-project)
-  * [Built With](#built-with)
-* [Getting Started](#getting-started)
-  * [Installation](#installation)
+* [프로젝트 정보](#about-the-project)
+  * [프로젝트 환경](#built-with)
+* [시작하기](#getting-started)
+  * [설치 방법](#installation)
 
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## 프로젝트 정보
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
