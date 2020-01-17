@@ -45,7 +45,7 @@ trello-clone/
     ├── router
     │   ├── board.js
     │   ├── card.js
-    │   ├── list.js
+    │   └── list.js
     └── server.js
 ```
 
