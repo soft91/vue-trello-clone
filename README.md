@@ -22,7 +22,7 @@
 1. Vue.js (@vue/cli 4.1.1)
 2. Typescript
 3. Node.js Express
-4. Mysql
+4. MariaDB
 5. Element-UI
 
 ### 프로젝트 구조
