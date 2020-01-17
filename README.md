@@ -14,7 +14,7 @@
 
 <p align="center">
 <img src="http://soft91.ipdisk.co.kr:80/publist/HDD1/%EB%AC%B8%EC%84%9C/Git/vue-trello-clone/vue-trello-clone(main).png" width="400" height="400"/>
-<img src="http://soft91.ipdisk.co.kr:80/publist/HDD1/%EB%AC%B8%EC%84%9C/Git/vue-trello-clone/vue-trello-clone(list).png" width="400" height="400"/>
+<img src="http://soft91.ipdisk.co.kr:80/publist/HDD1/%EB%AC%B8%EC%84%9C/Git/vue-trello-clone/vue-trello-clone(list).png" width="500" height="400"/>
 </p>
 
 ### 프로젝트 환경
