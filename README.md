@@ -24,7 +24,7 @@
 
 ```
 $ vue-trello-clone
-vue-trello-clone/
+trello-clone/
 ├── src
 │   ├── components
 │   │   ├── card
