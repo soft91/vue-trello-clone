@@ -28,10 +28,10 @@ vue-trello-clone/
 ├── src
 │   ├── components
 │   │   ├── card
-│   │   │   ├── Card.vue
+│   │   │   ├── Card.vue                           # Card의 리스트 및 추가
 │   │   │── list
-│   │   │    ├── List.vue
-│   │   │    └── ListContainer.vue
+│   │   │    ├── List.vue                          # 추가된 List의 Layout (Child: Card)
+│   │   │    └── ListContainer.vue                 # List의 추가 및 생성된 List의 Wrapper
 │   ├── router
 │   │   └── index.ts
 │   ├── App.vue
