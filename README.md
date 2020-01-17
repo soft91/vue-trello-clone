@@ -12,8 +12,8 @@
 
 ## 프로젝트 정보
 
-![Main](http://soft91.ipdisk.co.kr:80/publist/HDD1/%EB%AC%B8%EC%84%9C/Git/vue-trello-clone/vue-trello-clone(main).png =100x20)
-![List](http://soft91.ipdisk.co.kr:80/publist/HDD1/%EB%AC%B8%EC%84%9C/Git/vue-trello-clone/vue-trello-clone(list).png =100x20)
+<img src="http://soft91.ipdisk.co.kr:80/publist/HDD1/%EB%AC%B8%EC%84%9C/Git/vue-trello-clone/vue-trello-clone(main).png" width="200"/>
+<img src="http://soft91.ipdisk.co.kr:80/publist/HDD1/%EB%AC%B8%EC%84%9C/Git/vue-trello-clone/vue-trello-clone(list).png" width="200"/>
 
 
 ### 프로젝트 환경
