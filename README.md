@@ -10,9 +10,9 @@
 * [사용 방법](#usage)
 
 
-## 프로젝트 정보(#about-the-project)
+## 프로젝트 정보
 
-### 프로젝트 환경(#project-1)
+### 프로젝트 환경
 
 1. Vue.js (@vue/cli 4.1.1)
 2. Typescript
@@ -20,7 +20,7 @@
 4. Mysql
 5. Element-UI
 
-### 프로젝트 구조(#project-2)
+### 프로젝트 구조
 
 ```
 $ vue-trello-clone
@@ -44,9 +44,9 @@ trello-clone/
     └── server.js
 ```
 
-## 시작하기(#getting-started)
+## 시작하기
 
-### 설치 방법(#installation)
+### 설치 방법
 
 1. Clone the repo
 ```sh
