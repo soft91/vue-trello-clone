@@ -12,6 +12,10 @@
 
 ## 프로젝트 정보
 
+![Main](http://soft91.ipdisk.co.kr:80/publist/HDD1/%EB%AC%B8%EC%84%9C/Git/vue-trello-clone/vue-trello-clone(main).png)
+![List](http://soft91.ipdisk.co.kr:80/publist/HDD1/%EB%AC%B8%EC%84%9C/Git/vue-trello-clone/vue-trello-clone(list).png)
+
+
 ### 프로젝트 환경
 
 1. Vue.js (@vue/cli 4.1.1)
