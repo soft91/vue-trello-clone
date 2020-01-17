@@ -14,7 +14,7 @@
         >
           <router-link :to="{path: `/list/${value.id}`, query: { title: value.title }}">
             <el-card
-              class="create-board-btn"
+              class="board-btn"
               shadow="always"
             >
               {{ value.title }}
@@ -137,6 +137,11 @@ export default class Main extends Vue {
   padding: 6px;
 }
 .create-board-btn {
+  font-weight: bold;
+  width: 206px;
+  height: 64px;
+}
+.board-btn {
   font-weight: bold;
   width: 206px;
   height: 64px;

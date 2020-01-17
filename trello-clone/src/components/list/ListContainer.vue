@@ -6,12 +6,12 @@
           v-if="showInput === true"
           v-model="title"
           @blur="boardTitleUpdate"
-          @keyup.enter.native="$event.target.blur()"
+          @keyup.enter="$event.target.blur()"
         />
         <span 
           v-else
           class="list-title"
-          @click="showInputEdit"
+          @click="showInput = !showInput"
         >
           {{ title }}
         </span>
@@ -112,11 +112,6 @@ export default class ListContainer extends Vue {
         console.error('fetch failed', err);
       });
   }
-
-  showInputEdit(): void {
-    console.log(this.$refs.input);
-    this.showInput = !this.showInput;
-  }
   
   addList(): void {
     // List를 추가하는 이벤트
@@ -211,6 +206,7 @@ export default class ListContainer extends Vue {
 .addBtn {
   width: 272px;
   text-align: left;
+  margin-top: 3px;
 }
 .addlist-btn{
   min-height: 32px;

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div @change="changeItem">
+    <div>
       <draggable
         class="list-group"
         group="card"
@@ -110,16 +110,6 @@ export default class Card extends Vue {
       .catch(err => {
           console.error('fetch failed', err);
       });
-  }
-
-  changeItem(evt: any): void {
-    // cardItem이 이동을 했을 때의 처리(Update)
-
-    
-  }
-
-  deleteCard(): void {
-    // cardItem을 삭제 했을 때 발생되는 처리(Delete)
   }
 }
 </script>

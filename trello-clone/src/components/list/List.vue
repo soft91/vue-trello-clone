@@ -6,11 +6,11 @@
       slot="header"
       class="clearfix title"
     > 
-      <el-input
-        v-model="changeTitle"
+      <input
         v-if="showInput === true"
+        v-model="changeTitle"
         @blur="listTitleUpdate"
-        @keyup.enter.native="$event.target.blur()"
+        @keyup.enter="$event.target.blur()"
       />
       <span 
         v-else
@@ -20,9 +20,7 @@
       </span>
     </div>
     <div>
-      <Card
-        :listId="list_id"
-      />
+      <Card :listId="list_id" />
     </div>
   </el-card>
 </template>
