@@ -57,5 +57,5 @@ git clone https://github.com/soft91/vue-trello-clone.git
 npm install
 ```
 
-## 사용 방법(#usage)
+## 사용 방법
 <https://trello.com/> 참고
